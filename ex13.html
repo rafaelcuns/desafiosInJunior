@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Jogadores</title>
+</head>
+<body>
+    <h1>Gerenciador de Jogadores</h1>
+    <button onclick="adicionarJogador()">Adicionar jogador</button>
+    <button onclick="buscarPorPosicao()">Buscar por posição</button>
+    <button onclick="listarTime()">Listar time</button>
+    <button onclick="calcularPontuacaoMedia()">Calcular pontuação média</button>
+    <button onclick="sair()">Sair</button>
+
+    <script>
+        let time = []
+
+        function adicionarJogador() {
+            let nome = prompt("Digite o nome do jogador:")
+            let idade = prompt("Digite a idade do jogador:")
+            let posicao = prompt("Digite a posição do jogador:")
+            let pontuacao = prompt("Digite a pontuação do jogador:")
+            let jogador = { nome, idade, posicao, pontuacao }
+            time.push(jogador)
+        }
+
+        function buscarPorPosicao() {
+            let posicao = prompt("Digite a posição:")
+            let jogadores = time.filter(jogador => jogador.posicao === posicao)
+            if (jogadores.length === 0) {
+                window.alert("Nenhum jogador encontrado nessa posição.")
+            } else {
+                jogadores.forEach(jogador => console.log(jogador))
+            }
+        }
+
+        function listarTime() {
+            console.log("Lista de jogadores:")
+            time.forEach(jogador => console.log(jogador))
+        }
+
+        function calcularPontuacaoMedia() {
+            let totalPontuacao = time.reduce((total, jogador) => total + jogador.pontuacao, 0)
+            let media = totalPontuacao / time.length
+            console.log("Pontuação média foi de: " + media)
+            return media
+        }
+
+        function sair() {
+            time = []
+            window.alert("Programa encerrado")
+        }
+    </script>
+</body>
+</html>

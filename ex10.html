@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fila de Espera</title>
+</head>
+<body>
+    <h1>Fila de Espera</h1>
+    <button onclick="adicionarCliente()">Novo Cliente</button>
+    <button onclick="atenderCliente()">Atender Cliente</button>
+    <button onclick="sair()">Sair</button>
+    <div id="fila"></div>
+
+    <script>
+        let fila = []
+
+        function adicionarCliente() {
+            let nome = window.prompt("Digite o nome do novo cliente:")
+            fila.push(nome)
+            atualizarFila()
+        }
+
+        function atenderCliente() {
+            if (fila.length === 0) {
+                window.alert("Nenhum cliente na fila.")
+            } else {
+                let cliente = fila.shift()
+                atualizarFila()
+                window.alert("Cliente " + cliente + " está sendo atendido")
+            }
+        }
+
+        function sair() {
+            fila = []
+            atualizarFila()
+            window.alert("Fim do programa")
+        }
+
+        function atualizarFila() {
+            let filaDiv = document.getElementById("fila")
+            filaDiv.innerHTML = ""
+            fila.forEach((nome, indice) => {
+                filaDiv.innerHTML += `<p>${indice + 1}º ${nome}</p>`
+            })
+        }
+
+        atualizarFila()
+    </script>
+</body>
+</html>
